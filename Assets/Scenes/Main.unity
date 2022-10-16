@@ -1466,7 +1466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &786955783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1486,6 +1486,9 @@ MonoBehaviour:
   - {fileID: 377987421}
   - {fileID: 487537629}
   - {fileID: 909668134}
+  waves:
+  - Parts: []
+    Timer: 0
 --- !u!4 &786955784
 Transform:
   m_ObjectHideFlags: 0
@@ -2477,7 +2480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acb4ce00033fbb04caef9a7df0ee9a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useLog: 1
+  useLog: 0
 --- !u!850595691 &1343857455
 LightingSettings:
   m_ObjectHideFlags: 0

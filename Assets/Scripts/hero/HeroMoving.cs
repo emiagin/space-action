@@ -64,11 +64,6 @@ public class HeroMoving : MonoBehaviour
 
     private Vector2 GetAxesForPlayerMove()
     {
-        bool isKeysRight = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow)
-     || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
-
-        if (!isKeysRight)
-            return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        return Vector2.zero;
+        return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 }

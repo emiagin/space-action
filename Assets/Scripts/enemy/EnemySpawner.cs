@@ -11,12 +11,42 @@ public class EnemySpawner : MonoBehaviour
 	private Transform enemyPrefab;
 	[SerializeField]
 	private SpotSpawn[] spawnPoints;
+	[SerializeField]
+	private EnemiesWave[] waves;
 
 	private void Awake()
 	{
-		spawnPoints[0].StartSpawn(10, 0.5f, targetHero, enemyPrefab);
-		spawnPoints[1].StartSpawn(5, 1f, targetHero, enemyPrefab);
-		spawnPoints[2].StartSpawn(7, 1.5f, targetHero, enemyPrefab);
-		spawnPoints[3].StartSpawn(3, 2f, targetHero, enemyPrefab);
+		//StartSpawn(spawns);
 	}
+
+	private void StartSpawn(SpawnInfo[] spawns)
+	{
+		for(int i = 0; i < spawns.Length; i++)
+		{
+			//spawnPoints[spawns[i].SpawnNumber].StartSpawn(spawns[i].EnemyCount, spawns[i].Delay, targetHero, enemyPrefab);
+		}
+	}
+}
+
+[System.Serializable]
+public struct EnemiesWave
+{
+	public EnemiesWavePart[] Parts;
+	public int Timer; //не переходит к следующей волне, пока не истечет таймер
+}
+
+[System.Serializable]
+public struct EnemiesWavePart
+{
+	public SpawnInfo[] Info;
+	public int Timer; //не переходит к следующей части, пока не истечет таймер
+}
+
+[System.Serializable]
+public struct SpawnInfo
+{
+	public SpotSpawn Spawn;
+	public int EnemyCount; //стоит >0 = спавнит ровно столько, независимо от таймера
+	public float Delay;
+	public int Timer; //стоит таймер = спавнит пока таймер не истечет
 }

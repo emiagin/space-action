@@ -30,6 +30,11 @@ public class HeroBehaviour : MonoBehaviour
 
 	private void Update()
 	{
+		_pressedLeftArrow = Input.GetKey(KeyCode.LeftArrow);
+		_pressedRightArrow = Input.GetKey(KeyCode.RightArrow);
+		_pressedUpArrow = Input.GetKey(KeyCode.UpArrow);
+		_pressedDownArrow = Input.GetKey(KeyCode.DownArrow);
+
 		SetDirectionView();
 		SetShooting();
 
@@ -47,11 +52,6 @@ public class HeroBehaviour : MonoBehaviour
 
 	private void SetShooting()
 	{
-		_pressedLeftArrow = Input.GetKey(KeyCode.LeftArrow);
-		_pressedRightArrow = Input.GetKey(KeyCode.RightArrow);
-		_pressedUpArrow = Input.GetKey(KeyCode.UpArrow);
-		_pressedDownArrow = Input.GetKey(KeyCode.DownArrow);
-
 		_isShootStart = (_pressedLeftArrow || _pressedRightArrow || _pressedUpArrow || _pressedDownArrow) && !weapon.IsShooting;
 		_isShootStop = !(_pressedLeftArrow || _pressedRightArrow || _pressedUpArrow || _pressedDownArrow) && weapon.IsShooting;
 
@@ -60,18 +60,16 @@ public class HeroBehaviour : MonoBehaviour
 
 	private void SetDirectionView()
 	{
-		if (Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow))
-			_viewY = 0;
-		if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-			_viewX = 0;
+		_viewY = 0;
+		_viewX = 0;
 
-		if (Input.GetKey(KeyCode.DownArrow))
+		if (_pressedDownArrow)
 			_viewY = -1;
-		if (Input.GetKey(KeyCode.UpArrow))
+		if (_pressedUpArrow)
 			_viewY = 1;
-		if (Input.GetKey(KeyCode.LeftArrow))
+		if (_pressedLeftArrow)
 			_viewX = -1;
-		if (Input.GetKey(KeyCode.RightArrow))
+		if (_pressedRightArrow)
 			_viewX = 1;
 
 		_directionView = new Vector2(_viewX, _viewY);
