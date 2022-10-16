@@ -55,7 +55,6 @@ public class HeroMoving : MonoBehaviour
         if (moveDirection != Vector2.zero)
         {
             IsMoving = true;
-            heroBehaviour.DirectionView = moveDirection;
             OnHeroMoving?.Invoke(moveDirection);
         }
         else
@@ -65,6 +64,11 @@ public class HeroMoving : MonoBehaviour
 
     private Vector2 GetAxesForPlayerMove()
     {
-        return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        bool isKeysRight = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow)
+     || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
+
+        if (!isKeysRight)
+            return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        return Vector2.zero;
     }
 }

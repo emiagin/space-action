@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
 
 	public void StartGame()
 	{
+		if (_levelTime < 0)
+			return;
 		InterfaceController.Instance.SetUIStartGame(_levelTime, GameEnd_LevelComplete);
 	}
 

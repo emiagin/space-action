@@ -25,6 +25,7 @@ public class Weapon : MonoBehaviour
 
 
 	private bool _isShooting;
+	public bool IsShooting => _isShooting;
 
 	public void StartShoot()
 	{
