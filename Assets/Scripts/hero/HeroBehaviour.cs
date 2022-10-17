@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum HeroLookState { Up, Down }
 public class HeroBehaviour : MonoBehaviour
 {
+	[SerializeField]
+	private Animator heroAnimator;
+	[SerializeField]
+	private HeroMoving heroMoving;
 	[SerializeField]
 	private ParametersController parameters;
 	[SerializeField]
@@ -11,6 +15,34 @@ public class HeroBehaviour : MonoBehaviour
 
 	private Vector2 _directionView;
 	public Vector2 DirectionView => _directionView;
+
+	private HeroLookState _lookMoving;
+	public HeroLookState LookMoving
+	{
+		get => _lookMoving;
+		private set
+		{
+			if (value == _lookMoving)
+				return;
+			_lookMoving = value;
+			//Debug.Log($"Debug animator hero move = {value}");
+			switch (_lookMoving)
+			{
+				case HeroLookState.Down:
+					heroAnimator.SetTrigger("move_down");
+					break;
+				case HeroLookState.Up:
+					heroAnimator.SetTrigger("move_up");
+					break;
+				/*case HeroLookState.Left:
+					heroAnimator.SetTrigger("move_left");
+					break;
+				case HeroLookState.Right:
+					heroAnimator.SetTrigger("move_right");
+					break;*/
+			}
+		}
+	}
 
 	private float _viewX, _viewY;
 
@@ -26,6 +58,17 @@ public class HeroBehaviour : MonoBehaviour
 
 		_isShootStart = false;
 		_isShootStop = false;
+
+		heroMoving.OnHeroMoving += OnMoveAnimation;
+		heroMoving.OnHeroStartMoving += SetMovingStateAnimetion;
+		heroMoving.OnHeroStopMoving += SetMovingStateAnimetion;
+	}
+
+	~HeroBehaviour()
+	{
+		heroMoving.OnHeroMoving -= OnMoveAnimation;
+		heroMoving.OnHeroStartMoving -= SetMovingStateAnimetion;
+		heroMoving.OnHeroStopMoving -= SetMovingStateAnimetion;
 	}
 
 	private void Update()
@@ -74,5 +117,19 @@ public class HeroBehaviour : MonoBehaviour
 
 		_directionView = new Vector2(_viewX, _viewY);
 		//Debug.Log($"DirectionView = {_directionView}");
+	}
+
+	private void OnMoveAnimation(Vector2 moveDirection)
+	{
+		//Debug.Log($"Debug Move state direction={moveDirection}");
+		if (moveDirection.y < 0)
+			LookMoving = HeroLookState.Up;
+		if (moveDirection.y > 0)
+			LookMoving = HeroLookState.Down;
+	}
+
+	private void SetMovingStateAnimetion(bool isMoving)
+	{
+		heroAnimator.SetBool("is_moving", isMoving);
 	}
 }

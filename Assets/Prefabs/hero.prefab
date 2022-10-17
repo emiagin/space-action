@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2617005296718743819}
   m_RootOrder: 1
@@ -63,6 +64,7 @@ GameObject:
   - component: {fileID: 4170501514422998424}
   - component: {fileID: 4463150738933799322}
   - component: {fileID: 8429268430599870830}
+  - component: {fileID: 7871638456035225083}
   m_Layer: 0
   m_Name: hero
   m_TagString: Player
@@ -80,6 +82,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2617005297123486712}
   - {fileID: 6944859300157574421}
@@ -128,6 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbe260e4606a2f4d9f1e262e35c45e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroAnimator: {fileID: 7871638456035225083}
+  heroMoving: {fileID: 2617005296718743816}
   parameters: {fileID: 4170501514422998424}
   weapon: {fileID: 7056602199222620237}
 --- !u!50 &8429268430599870830
@@ -151,6 +156,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &7871638456035225083
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617005296718743818}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cbf68868604e1634aaf30cf241084f8c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2617005297123486715
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +205,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2617005296718743819}
   m_RootOrder: 0
@@ -195,6 +221,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
