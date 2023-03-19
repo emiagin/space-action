@@ -5,18 +5,18 @@ using Pathfinding;
 
 public class SpotSpawn : MonoBehaviour
 {
+	private SpotSpawnInfo _info;
+
 	private int _countSpawned = 0;
-	private int _countNeed = 0;
-	private float _delay = 0f;
 	private Transform _target;
 	private Transform _prefab;
 
-	public void StartSpawn(int count, float delay, Transform target, Transform prefab)
+	public void StartSpawn(SpotSpawnInfo info, Transform target, Transform prefab)
 	{
+		StopCoroutine("WaitSpawnDelay");
 		//Debug.Log("Spawn start");
+		_info = info;
 		_countSpawned = 0;
-		_countNeed = count;
-		_delay = delay;
 		_prefab = prefab;
 		_target = target;
 		Spawn();
@@ -24,7 +24,7 @@ public class SpotSpawn : MonoBehaviour
 
 	private void Spawn()
 	{
-		if (_countSpawned == _countNeed)
+		if (_countSpawned == _info.EnemyCount)
 		{
 			EndSpawn();
 			return;
@@ -50,7 +50,22 @@ public class SpotSpawn : MonoBehaviour
 
 	IEnumerator WaitSpawnDelay()
 	{
-		yield return new WaitForSeconds(_delay);
+		yield return new WaitForSeconds(_info.Delay);
 		Spawn();
+	}
+}
+
+[System.Serializable]
+public class SpotSpawnInfo
+{
+	public int EnemyCount; //стоит >0 = спавнит ровно столько, независимо от таймера
+	public float Delay;
+	public int Timer; //стоит таймер = спавнит пока таймер не истечет
+
+	public SpotSpawnInfo(int _enemyCount, float _delay, int _timer)
+	{
+		EnemyCount = _enemyCount;
+		Delay = _delay;
+		Timer = _timer;
 	}
 }

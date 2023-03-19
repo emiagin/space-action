@@ -23,7 +23,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private ParametersController _heroParameters;
 	[SerializeField]
-	private int _levelTime;
+	private EnemyWavesController _enemyWavesController;
+	[SerializeField]
+	private Level[] _levels;
 
 	private void Awake()
 	{
@@ -42,9 +44,8 @@ public class GameManager : MonoBehaviour
 
 	public void StartGame()
 	{
-		if (_levelTime < 0)
-			return;
-		InterfaceController.Instance.SetUIStartGame(_levelTime, GameEnd_LevelComplete);
+		InterfaceController.Instance.SetUIStartGame(_levels[0].LevelTime, GameEnd_LevelComplete);
+		_enemyWavesController.StartEnemiesSpawnerOnLevel(_levels[0]);
 	}
 
 	private void GameEnd_LevelComplete()
