@@ -9,11 +9,14 @@ public class EnemyWavesController : MonoBehaviour
 
 	private Level _level;
 	private int _currentWaveIndex;
+	private bool _startWaveSpawners = false;
 
 	public void StartEnemiesSpawnerOnLevel(Level level)
 	{
+		//Debug.Log("Start Waves Spawner");
 		_level = level;
 		_currentWaveIndex = -1;
+		_startWaveSpawners = true;
 		NextWave();
 	}
 
@@ -26,19 +29,32 @@ public class EnemyWavesController : MonoBehaviour
 			StopWaves();
 			return;
 		}
+		//Debug.Log($"New Wave {_currentWaveIndex}");
 
 		_enemySpawner.StartSpawn(_level.EnemiesWaves[_currentWaveIndex].Infos);
+	}
+
+	private void Update()
+	{
+		if (_startWaveSpawners && _enemySpawner.SpawnerWorkComplete)
+			NextWavePrepare();
+	}
+
+	private void NextWavePrepare()
+	{
+		//Debug.Log($"Next Wave Prepare time ={_level.EnemiesWaves[_currentWaveIndex].Timer} sec");
 		StartCoroutine("WaitWaveTime");
 	}
 
 	private void StopWaves()
 	{
-
+		//Debug.Log($"Stop Waves Spawner");
+		_startWaveSpawners = false;
 	}
 
 	IEnumerator WaitWaveTime()
 	{
-		yield return new WaitForSeconds(_level.LevelTime);
+		yield return new WaitForSeconds(_level.EnemiesWaves[_currentWaveIndex].Timer);
 		NextWave();
 	}
 }

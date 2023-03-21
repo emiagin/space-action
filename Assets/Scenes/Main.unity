@@ -2357,16 +2357,46 @@ MonoBehaviour:
     EnemiesWaves:
     - InfoAll:
         EnemyCount: 12
+        Delay: 1
+        Timer: 0
+      SpotsCount: 4
+      Timer: 5
+    - InfoAll:
+        EnemyCount: 16
+        Delay: 0.9
+        Timer: 0
+      SpotsCount: 4
+      Timer: 5
+    - InfoAll:
+        EnemyCount: 20
         Delay: 0.8
         Timer: 0
       SpotsCount: 4
       Timer: 5
     - InfoAll:
-        EnemyCount: 50
-        Delay: 0.8
+        EnemyCount: 24
+        Delay: 0.7
         Timer: 0
       SpotsCount: 4
-      Timer: 10
+      Timer: 5
+    - InfoAll:
+        EnemyCount: 28
+        Delay: 0.6
+        Timer: 0
+      SpotsCount: 4
+      Timer: 5
+    - InfoAll:
+        EnemyCount: 32
+        Delay: 0.5
+        Timer: 0
+      SpotsCount: 4
+      Timer: 5
+    - InfoAll:
+        EnemyCount: 36
+        Delay: 0.4
+        Timer: 0
+      SpotsCount: 4
+      Timer: 5
 --- !u!4 &1313213512
 Transform:
   m_ObjectHideFlags: 0

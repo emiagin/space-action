@@ -11,10 +11,13 @@ public class SpotSpawn : MonoBehaviour
 	private Transform _target;
 	private Transform _prefab;
 
+	[HideInInspector]
+	public bool SpawnComplete = false;
+
 	public void StartSpawn(SpotSpawnInfo info, Transform target, Transform prefab)
 	{
 		StopCoroutine("WaitSpawnDelay");
-		//Debug.Log("Spawn start");
+		SpawnComplete = false;
 		_info = info;
 		_countSpawned = 0;
 		_prefab = prefab;
@@ -30,7 +33,7 @@ public class SpotSpawn : MonoBehaviour
 			return;
 		}
 
-		//Debug.Log($"Spawn count={_countSpawned + 1}");
+		//Debug.Log($"------- Spawn count={_countSpawned + 1}");
 		var go = Instantiate(_prefab, transform);
 		go.parent = transform;
 		go.localPosition = Vector3.zero;
@@ -45,7 +48,8 @@ public class SpotSpawn : MonoBehaviour
 
 	private void EndSpawn()
 	{
-		//Debug.Log("Spawn end");
+		SpawnComplete = true;
+		//Debug.Log($"------- End Spawn");
 	}
 
 	IEnumerator WaitSpawnDelay()
