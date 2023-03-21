@@ -10,7 +10,7 @@ public class EnemyBehaviour : MonoBehaviour
 	private void Awake()
 	{
 		parameters.OnHealthNull += Death;
-		parameters.OnChangeHealth += LogController.Instance.Log_OnEnemyHealthChange;
+		//parameters.OnChangeHealth += LogController.Instance.Log_OnEnemyHealthChange;
 	}
 
 	~EnemyBehaviour()
@@ -20,6 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
 
 	private void Death()
 	{
+		CollectorController.Instance.AddKill(1);
 		Destroy(gameObject);
 	}
 
