@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
+//using Pathfinding;
 
 public class SpotSpawn : MonoBehaviour
 {
@@ -37,7 +37,7 @@ public class SpotSpawn : MonoBehaviour
 		var go = Instantiate(_prefab, transform);
 		go.parent = transform;
 		go.localPosition = Vector3.zero;
-		go.GetComponent<AIDestinationSetter>().target = _target;
+		//go.GetComponent<AIDestinationSetter>().target = _target;
 
 		var name = go.GetComponent<ParametersController>().MainName;
 		name = name + "_" + _countSpawned.ToString();

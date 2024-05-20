@@ -36,6 +36,10 @@ public class ParametersController : MonoBehaviour
 	private int _damage;
 	public int Damage => _damage;
 
+	[SerializeField]
+	private float _speed;
+	public float Speed => _speed;
+
 	private void Awake()
 	{
 		_health = _maxHealth;

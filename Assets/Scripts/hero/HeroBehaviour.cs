@@ -13,6 +13,9 @@ public class HeroBehaviour : MonoBehaviour
 	[SerializeField]
 	private Weapon weapon;
 
+	private Transform _currentPosition;
+	public Transform CurrentPosition => _currentPosition;
+
 	private Vector2 _directionView;
 	public Vector2 DirectionView => _directionView;
 
@@ -77,6 +80,8 @@ public class HeroBehaviour : MonoBehaviour
 		_pressedRightArrow = Input.GetKey(KeyCode.RightArrow);
 		_pressedUpArrow = Input.GetKey(KeyCode.UpArrow);
 		_pressedDownArrow = Input.GetKey(KeyCode.DownArrow);
+
+		_currentPosition = transform;
 
 		SetDirectionView();
 		SetShooting();
