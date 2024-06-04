@@ -10,6 +10,8 @@ public class EnemyBehaviour : MonoBehaviour
 	[SerializeField]
 	private ParametersController parameters;
 
+	List<Node> path = null;
+
 	private void Awake()
 	{
 		//pathfinding = FindObjectOfType<Pathfinding>();
@@ -42,7 +44,14 @@ public class EnemyBehaviour : MonoBehaviour
 
 	void Update()
 	{
-		List<Node> path = pathfinding.FindPath(transform.position, hero.CurrentPosition.position);
+		try
+		{
+			path = pathfinding.FindPath(transform.position, hero.CurrentPosition.position);
+		}
+		catch
+		{
+
+		}
 		if (path != null && path.Count > 0)
 		{
 			Vector3 nextPosition = path[0].worldPosition;

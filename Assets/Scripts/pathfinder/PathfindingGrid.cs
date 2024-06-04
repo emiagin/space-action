@@ -15,13 +15,13 @@ public class PathfindingGrid : MonoBehaviour
 
     void Start()
     {
-        nodeDiameter = nodeRadius * 2;
         CreateGrid();
     }
 
     public void CreateGrid()
     {
-		Debug.Log("Start upgrade grid");
+		nodeDiameter = nodeRadius * 2;
+		//Debug.Log("Start upgrade grid");
 		if (spriteShapeController == null)
         {
             Debug.LogError("SpriteShapeController not assigned.");
@@ -37,9 +37,9 @@ public class PathfindingGrid : MonoBehaviour
 			Vector3 worldPosition = spriteShapeController.transform.TransformPoint(localPosition); // Convert it to world position
 			points.Add(worldPosition);
         }
-		Debug.Log($"Bounds {points.Count}:");
+		/*Debug.Log($"Bounds {points.Count}:");
 		foreach (var node in points)
-			Debug.Log($"{node}");
+			Debug.Log($"{node}");*/
 
 		// Determine the bounds of the grid based on the SpriteShape
 		Vector2 min = points[0];
@@ -58,7 +58,7 @@ public class PathfindingGrid : MonoBehaviour
 		gridSizeX = Mathf.CeilToInt((max.x - min.x) / nodeDiameter);
 		gridSizeY = Mathf.CeilToInt((max.y - min.y) / nodeDiameter);
 		grid = new Node[gridSizeX, gridSizeY];
-		Debug.Log($"gridSizeX {gridSizeX} gridSizeY {gridSizeY}");
+		//Debug.Log($"gridSizeX {gridSizeX} gridSizeY {gridSizeY}");
 
 		for (int x = 0; x < gridSizeX; x++)
         {
@@ -77,10 +77,10 @@ public class PathfindingGrid : MonoBehaviour
                 }
             }
         }
-		Debug.Log($"Grid {grid.Length}:");
+		//Debug.Log($"Grid {grid.Length}:");
 		//foreach (var node in grid)
 		//	Debug.Log($"{node.worldPosition}");
-		Debug.Log("End upgrade grid");
+		//Debug.Log("End upgrade grid");
 	}
 
     bool IsPointInPolygon(List<Vector2> polygon, Vector2 point)
