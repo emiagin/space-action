@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 public enum HeroLookState { Up, Down }
 public class HeroBehaviour : MonoBehaviour
 {
@@ -25,11 +27,11 @@ public class HeroBehaviour : MonoBehaviour
 		get => _lookMoving;
 		private set
 		{
-			if (value == _lookMoving)
+			/*if (value == _lookMoving)
 				return;
-			_lookMoving = value;
+			_lookMoving = value;*/
 			//Debug.Log($"Debug animator hero move = {value}");
-			switch (_lookMoving)
+			/*switch (_lookMoving)
 			{
 				case HeroLookState.Down:
 					heroAnimator.SetTrigger("move_down");
@@ -43,7 +45,7 @@ public class HeroBehaviour : MonoBehaviour
 				case HeroLookState.Right:
 					heroAnimator.SetTrigger("move_right");
 					break;*/
-			}
+			//}
 		}
 	}
 
@@ -52,9 +54,18 @@ public class HeroBehaviour : MonoBehaviour
 	private bool _pressedLeftArrow, _pressedRightArrow, _pressedUpArrow, _pressedDownArrow;
 	private bool _isShootStart, _isShootStop;
 
+	Controls controls;
+	InputAction move;
+
 	private void Awake()
 	{
-		_pressedLeftArrow = false;
+		controls = new Controls();
+		move = controls.input.move;
+		controls.input.move.performed += (InputAction.CallbackContext callbackContext) =>
+		{
+			Debug.Log(controls.input.move.ReadValue<Vector2>());
+		};
+		/*_pressedLeftArrow = false;
 		_pressedRightArrow = false;
 		_pressedUpArrow = false;
 		_pressedDownArrow = false;
@@ -64,19 +75,27 @@ public class HeroBehaviour : MonoBehaviour
 
 		heroMoving.OnHeroMoving += OnMoveAnimation;
 		heroMoving.OnHeroStartMoving += SetMovingStateAnimetion;
-		heroMoving.OnHeroStopMoving += SetMovingStateAnimetion;
+		heroMoving.OnHeroStopMoving += SetMovingStateAnimetion;*/
 	}
+	private void OnEnable()
+	{
+		controls.input.move.Enable();
 
+	}
+	private void OnDisable()
+	{
+		controls.input.move.Disable();
+	}
 	~HeroBehaviour()
 	{
-		heroMoving.OnHeroMoving -= OnMoveAnimation;
+		/*heroMoving.OnHeroMoving -= OnMoveAnimation;
 		heroMoving.OnHeroStartMoving -= SetMovingStateAnimetion;
-		heroMoving.OnHeroStopMoving -= SetMovingStateAnimetion;
+		heroMoving.OnHeroStopMoving -= SetMovingStateAnimetion;*/
 	}
 
 	private void Update()
 	{
-		_pressedLeftArrow = Input.GetKey(KeyCode.LeftArrow);
+		/*_pressedLeftArrow = Input.GetKey(KeyCode.LeftArrow);
 		_pressedRightArrow = Input.GetKey(KeyCode.RightArrow);
 		_pressedUpArrow = Input.GetKey(KeyCode.UpArrow);
 		_pressedDownArrow = Input.GetKey(KeyCode.DownArrow);
@@ -95,19 +114,19 @@ public class HeroBehaviour : MonoBehaviour
 		{
 			weapon.StopShoot();
 			_isShootStop = false;
-		}
+		}*/
 	}
 
 	private void SetShooting()
-	{
+	{/*
 		_isShootStart = (_pressedLeftArrow || _pressedRightArrow || _pressedUpArrow || _pressedDownArrow) && !weapon.IsShooting;
 		_isShootStop = !(_pressedLeftArrow || _pressedRightArrow || _pressedUpArrow || _pressedDownArrow) && weapon.IsShooting;
-
+		*/
 		//Debug.Log($"left = {_pressedLeftArrow} right = {_pressedRightArrow} up = {_pressedUpArrow} down = {_pressedDownArrow} || start = {_isShootStart} stop = {_isShootStop}");
 	}
 
 	private void SetDirectionView()
-	{
+	{/*
 		_viewY = 0;
 		_viewX = 0;
 
@@ -121,20 +140,20 @@ public class HeroBehaviour : MonoBehaviour
 			_viewX = 1;
 
 		_directionView = new Vector2(_viewX, _viewY);
-		//Debug.Log($"DirectionView = {_directionView}");
+		//Debug.Log($"DirectionView = {_directionView}");*/
 	}
 
 	private void OnMoveAnimation(Vector2 moveDirection)
-	{
+	{/*
 		//Debug.Log($"Debug Move state direction={moveDirection}");
 		if (moveDirection.y < 0)
 			LookMoving = HeroLookState.Up;
 		if (moveDirection.y > 0)
-			LookMoving = HeroLookState.Down;
+			LookMoving = HeroLookState.Down;*/
 	}
 
 	private void SetMovingStateAnimetion(bool isMoving)
-	{
-		heroAnimator.SetBool("is_moving", isMoving);
+	{/*
+		heroAnimator.SetBool("is_moving", isMoving);*/
 	}
 }
