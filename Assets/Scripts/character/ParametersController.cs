@@ -40,6 +40,9 @@ public class ParametersController : MonoBehaviour
 	private float _speed;
 	public float Speed => _speed;
 
+	public float separationDistance = 1.5f;
+	public float avoidanceStrength = 1.0f;
+
 	private void Awake()
 	{
 		_health = _maxHealth;

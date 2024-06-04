@@ -13,12 +13,14 @@ public class PathfindingGrid : MonoBehaviour
     float nodeDiameter;
     int gridSizeX, gridSizeY;
 
-    void Start()
-    {
-        CreateGrid();
-    }
+    public bool IsGridCreate => grid != null && grid.Length > 0;
 
-    public void CreateGrid()
+	public void Init()
+	{
+        CreateGrid();
+	}
+
+	public void CreateGrid()
     {
 		nodeDiameter = nodeRadius * 2;
 		//Debug.Log("Start upgrade grid");

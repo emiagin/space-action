@@ -10,8 +10,8 @@ public class EnemyDamageTrigger : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		//Debug.Log("Trigger enter");
-		if (collision.tag == "Enemy")
-			collision.GetComponent<EnemyBehaviour>().AttackTarget(_heroParams);
+		//if (collision.tag == "Enemy")
+		//	collision.GetComponent<EnemyAI>().AttackTarget(_heroParams);
 	}
 
 }

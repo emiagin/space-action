@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
-	public PathfindingGrid grid;
+	[SerializeField]
+	private PathfindingGrid grid;
+
+	public bool IsPathfinderReady => grid != null && grid.IsGridCreate;
 
 	void Awake()
 	{
+		grid.Init();
 		//grid = GetComponent<PathfindingGrid>();
 	}
 

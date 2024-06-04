@@ -14,7 +14,7 @@ public class BulletDamageTrigger : MonoBehaviour
 		//Debug.Log("Trigger enter");
 		if (collision.tag == "Enemy")
 		{
-			collision.GetComponent<EnemyBehaviour>().TakeDamage(damage);
+			//collision.GetComponent<EnemyAI>().TakeDamage(damage);
 			Destroy(bullet);
 		}
 		else if(collision.tag == "Edge")
