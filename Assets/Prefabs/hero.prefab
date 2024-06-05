@@ -119,6 +119,9 @@ MonoBehaviour:
   _mainName: Pablo
   _maxHealth: 3
   _damage: 0
+  _speed: 0
+  separationDistance: 1.5
+  avoidanceStrength: 1
 --- !u!114 &4463150738933799322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +193,7 @@ GameObject:
   - component: {fileID: 3080610093133322397}
   m_Layer: 0
   m_Name: body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

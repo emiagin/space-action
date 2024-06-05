@@ -7,6 +7,19 @@ public class Pathfinding : MonoBehaviour
 	private PathfindingGrid grid;
 
 	public bool IsPathfinderReady => grid != null && grid.IsGridCreate;
+	public float PathSize => CalcPathSize(_lastPath);
+	private List<Node> _lastPath = null;
+	private float CalcPathSize(List<Node> path)
+	{
+		if(path == null || path.Count < 2)
+			return 0;
+
+		float size = 0f;
+		for(int i = 1; i < path.Count - 1; i++)
+			size += Vector3.Distance(path[i - 1].worldPosition, path[i].worldPosition);
+
+		return size;
+	}
 
 	void Awake()
 	{
@@ -61,7 +74,7 @@ public class Pathfinding : MonoBehaviour
 				}
 			}
 		}
-
+		_lastPath = null;
 		return null;
 	}
 
@@ -76,6 +89,7 @@ public class Pathfinding : MonoBehaviour
 			currentNode = currentNode.parent;
 		}
 		path.Reverse();
+		_lastPath = path;
 		return path;
 	}
 
