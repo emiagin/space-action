@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemiesAIController : MonoBehaviour
 {
@@ -75,9 +74,9 @@ public class EnemiesAIController : MonoBehaviour
 
 	private void EnemiesEndCollision(EnemyAI enemyCall, EnemyAI enemyHit)
 	{
-		bool enemyCallCanMove = enemyCall.FullPathSize >= enemyHit.FullPathSize;
-		enemyHit.SetPermissionToMove(!enemyCallCanMove);
-		enemyCall.SetPermissionToMove(enemyCallCanMove);
+		//Debug.Log("Exit collision");
+		enemyCall.SetPermissionToMove(true);
+		enemyHit.SetPermissionToMove(true);
 	}
 
 	private void PlayerCollision(EnemyAI enemy)
