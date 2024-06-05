@@ -54,12 +54,12 @@ public class HeroBehaviour : MonoBehaviour
 	private bool _pressedLeftArrow, _pressedRightArrow, _pressedUpArrow, _pressedDownArrow;
 	private bool _isShootStart, _isShootStop;
 
-	Controls controls;
+	InputControls controls;
 	InputAction move;
 
 	private void Awake()
 	{
-		controls = new Controls();
+		controls = new InputControls();
 		move = controls.input.move;
 		controls.input.move.performed += (InputAction.CallbackContext callbackContext) =>
 		{
