@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6944859300157574421}
   - component: {fileID: 7056602199222620237}
+  - component: {fileID: 1600546900347797982}
   m_Layer: 0
   m_Name: weapon
   m_TagString: Untagged
@@ -44,13 +45,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b926c8b3bcf644a987516a83cf66da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroBehaviour: {fileID: 4463150738933799322}
-  edgeColliders: []
-  heroCollider: {fileID: 8900433654569636360}
+  edgeColliders:
+  - {fileID: 0}
+  - {fileID: 0}
   bulletPrefab: {fileID: 6136246432164552255, guid: 588755699a06d4f498a68bd4fa908ec7, type: 3}
   _damage: 1
-  _delay: 0.5
-  _speed: 0.2
+  _delay: 0.4
+  _speed: 0.21
+--- !u!114 &1600546900347797982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2483294926270334815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253310afaf339b74caa7eff53b0e1ee7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponBehavior: {fileID: 7056602199222620237}
+  weaponLayersInflicted:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &2617005296718743818
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +77,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2617005296718743819}
+  - component: {fileID: 2835685196022496127}
   - component: {fileID: 2617005296718743816}
   - component: {fileID: 4170501514422998424}
   - component: {fileID: 4463150738933799322}
@@ -89,6 +107,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2835685196022496127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2617005296718743818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814550ee3ce73354194f6f9bb561a482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroInputs: {fileID: 4463150738933799322}
+  heroMoving: {fileID: 2617005296718743816}
+  equippedWeapon: {fileID: 1600546900347797982}
 --- !u!114 &2617005296718743816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   heroRigidbody: {fileID: 8429268430599870830}
-  heroBehaviour: {fileID: 4463150738933799322}
 --- !u!114 &4170501514422998424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainName: Pablo
-  _maxHealth: 3
+  _maxHealth: 4
   _damage: 0
   _speed: 0
   separationDistance: 1.5
@@ -134,10 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbe260e4606a2f4d9f1e262e35c45e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroAnimator: {fileID: 7871638456035225083}
-  heroMoving: {fileID: 2617005296718743816}
-  parameters: {fileID: 4170501514422998424}
-  weapon: {fileID: 7056602199222620237}
 --- !u!50 &8429268430599870830
 Rigidbody2D:
   serializedVersion: 4

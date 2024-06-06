@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class WeaponBehavior : MonoBehaviour
 {
 	[SerializeField]
-	private HeroBehaviour heroBehaviour;
-	[SerializeField]
 	private Collider2D[] edgeColliders;
-	[SerializeField]
-	private Collider2D heroCollider;
 	[SerializeField]
 	private GameObject bulletPrefab;
 	[SerializeField]
@@ -27,16 +23,23 @@ public class Weapon : MonoBehaviour
 	private bool _isShooting;
 	public bool IsShooting => _isShooting;
 
-	public void StartShoot()
+	private Vector2 direction;
+
+	public void StartShooting()
 	{
 		_isShooting = true;
 		AddNewBullet();
 	}
 
-	public void StopShoot()
+	public void StopShooting()
 	{
 		_isShooting = false;
 		StopCoroutine("WaitDelay");
+	}
+
+	public void SetDirection(Vector2 newDirection)
+	{
+		direction = newDirection;
 	}
 
 	private void AddNewBullet()
@@ -48,11 +51,11 @@ public class Weapon : MonoBehaviour
 		go.transform.localPosition = Vector3.zero;
 
 		var colliderBullet = go.GetComponentInChildren<Collider2D>();
-		Physics2D.IgnoreCollision(colliderBullet, heroCollider);
+		//Physics2D.IgnoreCollision(colliderBullet, heroCollider);
 		foreach(var edge in edgeColliders)
 			Physics2D.IgnoreCollision(colliderBullet, edge);
 
-		go.GetComponent<Bullet>().StartMove(heroBehaviour.DirectionView, Speed);
+		go.GetComponent<Bullet>().StartMove(direction, Speed);
 
 		StartCoroutine("WaitDelay");
 	}

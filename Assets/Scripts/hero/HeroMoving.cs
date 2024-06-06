@@ -7,63 +7,55 @@ public class HeroMoving : MonoBehaviour
     private float speed = 1f;
     [SerializeField]
     private Rigidbody2D heroRigidbody;
-    [SerializeField]
-    private HeroBehaviour heroBehaviour;
 
-    private Vector2 moveDirection;
+	private Vector2 _movingDirection;
+	public Vector2 MovingDirection => _movingDirection;
 
     private bool _isMoving = false;
-    public bool IsMoving
+    public bool IsMoving => _isMoving;
+
+    HeroInputs heroInputs;
+
+	public void Init(HeroInputs heroInputs)
     {
-        get => _isMoving;
-        private set
-        {
-            if (value == _isMoving)
-                return;
-            _isMoving = value;
-            if (!_isMoving)
-                OnHeroStopMoving?.Invoke(false);
-            else
-                OnHeroStartMoving?.Invoke(true);
-        }
+        this.heroInputs = heroInputs;
+
+		heroInputs.OnStartMoving += StartMove;
+		heroInputs.OnMoving += SetDirection;
+		heroInputs.OnEndMoving += EndMove;
+	}
+
+    ~HeroMoving()
+    {
+		heroInputs.OnStartMoving -= StartMove;
+		heroInputs.OnMoving -= SetDirection;
+		heroInputs.OnEndMoving -= EndMove;
+	}
+
+    private void StartMove(Vector2 moveDirection)
+    {
+        _isMoving = true;
+
+	}
+	private void EndMove(Vector2 moveDirection)
+	{
+        _isMoving = false;
+	}
+
+    private void SetDirection(Vector2 newDirection)
+    {
+        _movingDirection = newDirection;
     }
 
-    public Action<Vector2> OnHeroMoving;
-    public Action<bool> OnHeroStopMoving;
-    public Action<bool> OnHeroStartMoving;
+	private void FixedUpdate()
+	{
+        if(_isMoving)
+            Move(_movingDirection);
+	}
 
-    private void Update()
-    {
-        ProcessInputs();
-    }
-
-    private void FixedUpdate()
-    {
-        Move();
-    }
-
-    private void ProcessInputs()
-    {
-        var moveVector = GetAxesForPlayerMove();
-        moveDirection = moveVector.normalized;
-    }
-
-    private void Move()
+	private void Move(Vector2 moveDirection)
     {
         //Debug.Log($"Debug Hero Move direction = {moveDirection}");
-        heroRigidbody.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
-        if (moveDirection != Vector2.zero)
-        {
-            IsMoving = true;
-            OnHeroMoving?.Invoke(moveDirection);
-        }
-        else
-            IsMoving = false;
-
-    }
-
-    private Vector2 GetAxesForPlayerMove()
-    {
-        return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        transform.position += new Vector3(moveDirection.x, moveDirection.y, 0) * Time.deltaTime * speed;
     }
 }

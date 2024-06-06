@@ -35,6 +35,15 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""shoot"",
+                    ""type"": ""Value"",
+                    ""id"": ""54abe82c-5f76-4114-baba-b695dd8ba38b"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -63,7 +72,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""5c2ea022-3f66-493c-85bb-0d07c65c2932"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""keys"",
@@ -85,11 +94,66 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""a0185908-1755-4fa5-9572-08b40e526aec"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""keys"",
                     ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""476bb728-4433-4c7c-9cf9-08179138c699"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""shoot"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fc663f71-b925-47c4-aaac-b9f8c2678f87"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keys"",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""b8d20372-6877-4f45-b7c5-4a6062898523"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keys"",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""8832f450-9865-4693-aeb8-c09ec3eedf07"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keys"",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""327ecb2f-f684-408a-b9cc-741b39cf6c05"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""keys"",
+                    ""action"": ""shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 }
@@ -112,6 +176,7 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
         // input
         m_input = asset.FindActionMap("input", throwIfNotFound: true);
         m_input_move = m_input.FindAction("move", throwIfNotFound: true);
+        m_input_shoot = m_input.FindAction("shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -172,11 +237,13 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_input;
     private IInputActions m_InputActionsCallbackInterface;
     private readonly InputAction m_input_move;
+    private readonly InputAction m_input_shoot;
     public struct InputActions
     {
         private @InputControls m_Wrapper;
         public InputActions(@InputControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @move => m_Wrapper.m_input_move;
+        public InputAction @shoot => m_Wrapper.m_input_shoot;
         public InputActionMap Get() { return m_Wrapper.m_input; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -189,6 +256,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @move.started -= m_Wrapper.m_InputActionsCallbackInterface.OnMove;
                 @move.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnMove;
                 @move.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnMove;
+                @shoot.started -= m_Wrapper.m_InputActionsCallbackInterface.OnShoot;
+                @shoot.performed -= m_Wrapper.m_InputActionsCallbackInterface.OnShoot;
+                @shoot.canceled -= m_Wrapper.m_InputActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_InputActionsCallbackInterface = instance;
             if (instance != null)
@@ -196,6 +266,9 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
                 @move.started += instance.OnMove;
                 @move.performed += instance.OnMove;
                 @move.canceled += instance.OnMove;
+                @shoot.started += instance.OnShoot;
+                @shoot.performed += instance.OnShoot;
+                @shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -221,5 +294,6 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     public interface IInputActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }

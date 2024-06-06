@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemiesAIController : MonoBehaviour
 {
 	public Pathfinding pathfinding;
-	public HeroBehaviour heroBehaviour;
+	public HeroController heroController;
 
 	private List<Tuple<EnemyAI, int>> enemies = new List<Tuple<EnemyAI, int>>();
 	private bool movePermissionAll;
@@ -24,7 +24,7 @@ public class EnemiesAIController : MonoBehaviour
 		var enemiesArr = FindObjectsOfType<EnemyAI>();
 		for(int i = 0; i < enemiesArr.Length; i++)
 		{
-			enemiesArr[i].Init(pathfinding, this, heroBehaviour.CurrentPosition);
+			enemiesArr[i].Init(pathfinding, this, heroController.CurrentPosition);
 			enemies.Add(new Tuple<EnemyAI, int>(enemiesArr[i], 0));
 		}
 
@@ -53,7 +53,7 @@ public class EnemiesAIController : MonoBehaviour
 	private void Update()
 	{
 		foreach (var enemy in enemies)
-			enemy.Item1.SetTarget(heroBehaviour.CurrentPosition);
+			enemy.Item1.SetTarget(heroController.CurrentPosition);
 	}
 
 	private void EnemiesStartCollision(EnemyAI enemyCall, EnemyAI enemyHit)

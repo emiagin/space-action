@@ -1,5 +1,5 @@
 {
-    "name": "New Controls",
+    "name": "InputControls",
     "maps": [
         {
             "name": "input",
@@ -9,6 +9,15 @@
                     "name": "move",
                     "type": "Value",
                     "id": "247a6517-d187-4bd0-bc2c-da2fb485a526",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "shoot",
+                    "type": "Value",
+                    "id": "54abe82c-5f76-4114-baba-b695dd8ba38b",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -41,7 +50,7 @@
                 {
                     "name": "down",
                     "id": "5c2ea022-3f66-493c-85bb-0d07c65c2932",
-                    "path": "<Keyboard>/z",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "keys",
@@ -63,11 +72,66 @@
                 {
                     "name": "right",
                     "id": "a0185908-1755-4fa5-9572-08b40e526aec",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "keys",
                     "action": "move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "476bb728-4433-4c7c-9cf9-08179138c699",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "shoot",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "fc663f71-b925-47c4-aaac-b9f8c2678f87",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keys",
+                    "action": "shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "b8d20372-6877-4f45-b7c5-4a6062898523",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keys",
+                    "action": "shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "8832f450-9865-4693-aeb8-c09ec3eedf07",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keys",
+                    "action": "shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "327ecb2f-f684-408a-b9cc-741b39cf6c05",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keys",
+                    "action": "shoot",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
