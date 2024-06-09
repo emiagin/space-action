@@ -9,18 +9,26 @@ public class WeaponController: MonoBehaviour
 {
 	[SerializeField]
 	private WeaponBehavior weaponBehavior;
-	[SerializeField]
-	private LayerMask weaponLayersInflicted;
+	//[SerializeField]
+	//private LayerMask weaponLayersInflicted;
 
-	HeroInputs heroInputs;
+	private HeroInputs heroInputs;
+	private WeaponParameters weaponData;
 
-	public void Init(HeroInputs heroInputs)
+	public Action<EnemyController> onEnemyDamaged;
+
+	public void Init(HeroInputs heroInputs, WeaponParameters weaponData)
 	{
 		this.heroInputs = heroInputs;
+		this.weaponData = weaponData;
+
+		weaponBehavior.Init(weaponData);
 
 		heroInputs.OnStartShooting += ShootingStart;
 		heroInputs.OnShooting += Shooting;
 		heroInputs.OnEndShooting += ShootingEnd;
+
+		onEnemyDamaged += EnemyDamaged;
 	}
 
 	~WeaponController()
@@ -28,6 +36,8 @@ public class WeaponController: MonoBehaviour
 		heroInputs.OnStartShooting -= ShootingStart;
 		heroInputs.OnShooting -= Shooting;
 		heroInputs.OnEndShooting -= ShootingEnd;
+
+		onEnemyDamaged -= EnemyDamaged;
 	}
 
 	private void ShootingStart(Vector2 direction)
@@ -43,5 +53,9 @@ public class WeaponController: MonoBehaviour
 	private void ShootingEnd(Vector2 direction)
 	{
 		weaponBehavior.StopShooting();
+	}
+	private void EnemyDamaged(EnemyController enemy)
+	{
+		enemy.TakeDamage(weaponData.Damage); 
 	}
 }

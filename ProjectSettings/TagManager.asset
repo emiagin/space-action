@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Edge
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -48,4 +49,7 @@ TagManager:
     locked: 0
   - name: hero
     uniqueID: 622669299
+    locked: 0
+  - name: ui
+    uniqueID: 1232703361
     locked: 0

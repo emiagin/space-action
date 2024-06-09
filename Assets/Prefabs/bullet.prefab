@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6136246431291775678}
   m_Layer: 0
   m_Name: body
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,11 +133,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6136246431291775674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f41e206073c80f418c481ccb3a8cecf, type: 3}
+  m_Script: {fileID: 11500000, guid: f7cb4e8a4c7f21548a06c80e432b1f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 6136246432164552255}
-  damage: 1
 --- !u!1 &6136246432164552255
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +148,7 @@ GameObject:
   - component: {fileID: 312695735131429749}
   m_Layer: 0
   m_Name: bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,7 +178,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6136246432164552255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad4f5320e0af974e8544bb2ffbdab81, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e19f8317e7c2374d97ea7d8fc11f7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 6136246431291775679}

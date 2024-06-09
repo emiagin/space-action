@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6944859300157574421}
   - component: {fileID: 7056602199222620237}
-  - component: {fileID: 1600546900347797982}
+  - component: {fileID: 8421019422362349847}
   m_Layer: 0
   m_Name: weapon
   m_TagString: Untagged
@@ -42,17 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2483294926270334815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09b926c8b3bcf644a987516a83cf66da, type: 3}
+  m_Script: {fileID: 11500000, guid: 157a280fd271e4448b86d3af6ef139e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edgeColliders:
-  - {fileID: 0}
-  - {fileID: 0}
-  bulletPrefab: {fileID: 6136246432164552255, guid: 588755699a06d4f498a68bd4fa908ec7, type: 3}
-  _damage: 1
-  _delay: 0.4
-  _speed: 0.21
---- !u!114 &1600546900347797982
+  weaponBehavior: {fileID: 8421019422362349847}
+--- !u!114 &8421019422362349847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,13 +55,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2483294926270334815}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 253310afaf339b74caa7eff53b0e1ee7, type: 3}
+  m_Script: {fileID: 11500000, guid: 49978b23568cca744a9aec8680fc8371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponBehavior: {fileID: 7056602199222620237}
-  weaponLayersInflicted:
-    serializedVersion: 2
-    m_Bits: 128
+  edgeColliders: []
+  bulletPrefab: {fileID: 6136246432164552255, guid: 588755699a06d4f498a68bd4fa908ec7, type: 3}
 --- !u!1 &2617005296718743818
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroInputs: {fileID: 4463150738933799322}
   heroMoving: {fileID: 2617005296718743816}
-  equippedWeapon: {fileID: 1600546900347797982}
+  equippedWeapon: {fileID: 7056602199222620237}
+  dataController: {fileID: 0}
 --- !u!114 &2617005296718743816
 MonoBehaviour:
   m_ObjectHideFlags: 0

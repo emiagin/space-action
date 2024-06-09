@@ -13,14 +13,16 @@ public class HeroController: MonoBehaviour
 	private HeroMoving heroMoving;
 	[SerializeField]
 	private WeaponController equippedWeapon;
+	[SerializeField]
+	private DataController dataController;
 
 	public Transform CurrentPosition => transform;
 
 	private void Awake()
 	{
 		heroInputs.Init();
-
 		heroMoving.Init(heroInputs);
-		equippedWeapon.Init(heroInputs);
+
+		equippedWeapon.Init(heroInputs, dataController.LoadWeaponData());
 	}
 }

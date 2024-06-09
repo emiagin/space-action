@@ -8,22 +8,18 @@ public class WeaponBehavior : MonoBehaviour
 	private Collider2D[] edgeColliders;
 	[SerializeField]
 	private GameObject bulletPrefab;
-	[SerializeField]
-	private int _damage;
-	[SerializeField]
-	private float _delay;
-	[SerializeField]
-	private float _speed;
 
-	public int Damage => _damage;
-	public float Delay => _delay;
-	public float Speed => _speed;
-
+	private WeaponParameters weaponParameters;
 
 	private bool _isShooting;
 	public bool IsShooting => _isShooting;
 
 	private Vector2 direction;
+
+	public void Init(WeaponParameters weaponParameters)
+	{
+		this.weaponParameters = weaponParameters;
+	}
 
 	public void StartShooting()
 	{
@@ -55,14 +51,14 @@ public class WeaponBehavior : MonoBehaviour
 		foreach(var edge in edgeColliders)
 			Physics2D.IgnoreCollision(colliderBullet, edge);
 
-		go.GetComponent<Bullet>().StartMove(direction, Speed);
+		go.GetComponent<Bullet>().StartMove(direction, weaponParameters.Speed);
 
 		StartCoroutine("WaitDelay");
 	}
 
 	IEnumerator WaitDelay()
 	{
-		yield return new WaitForSeconds(Delay);
+		yield return new WaitForSeconds(weaponParameters.Delay);
 		AddNewBullet();
 	}
 }
