@@ -38,7 +38,7 @@ public class LogController : MonoBehaviour
 		OnLogChange?.Invoke(_log);
 	}
 
-	public void Log_OnEnemyAppearance(ParametersController enemy)
+	/*public void Log_OnEnemyAppearance(ParametersController enemy)
 	{
 		if (!useLog)
 			return;
@@ -56,5 +56,5 @@ public class LogController : MonoBehaviour
 		if(enemy.Health == 0)
 			_log += $"enemy <color=red>DEAD</color>\n";
 		OnLogChange?.Invoke(_log);
-	}
+	}*/
 }

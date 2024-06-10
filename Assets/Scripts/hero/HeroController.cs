@@ -16,13 +16,16 @@ public class HeroController: MonoBehaviour
 	[SerializeField]
 	private DataController dataController;
 
+	private Collider2D heroCollider;
 	public Transform CurrentPosition => transform;
 
 	private void Awake()
 	{
+		heroCollider = GetComponentInChildren<Collider2D>();
+
 		heroInputs.Init();
 		heroMoving.Init(heroInputs);
 
-		equippedWeapon.Init(heroInputs, dataController.LoadWeaponData());
+		equippedWeapon.Init(heroInputs, dataController.LoadWeaponData(), heroCollider);
 	}
 }

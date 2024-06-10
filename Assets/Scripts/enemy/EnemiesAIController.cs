@@ -24,7 +24,7 @@ public class EnemiesAIController : MonoBehaviour
 		var enemiesArr = FindObjectsOfType<EnemyAI>();
 		for(int i = 0; i < enemiesArr.Length; i++)
 		{
-			enemiesArr[i].Init(pathfinding, this, heroController.CurrentPosition);
+			enemiesArr[i].StartTargeting(pathfinding, this, heroController.CurrentPosition);
 			enemies.Add(new Tuple<EnemyAI, int>(enemiesArr[i], 0));
 		}
 

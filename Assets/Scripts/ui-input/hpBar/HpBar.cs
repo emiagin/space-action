@@ -29,11 +29,11 @@ public class HpBar : MonoBehaviour
 			_allHpPoints[i] = go.GetComponent<HpBarPoint>();
 		}
 	}
-
+	/*
 	public void ChangeHpBar(ParametersController parameters)
 	{
 		var hpDelta = parameters.MaxHealth - parameters.Health;
 		for(int i = 0; i < hpDelta; i++)
 			_allHpPoints[i].SetPoint(false);
-	}
+	}*/
 }

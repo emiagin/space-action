@@ -5,20 +5,22 @@ using UnityEngine;
 public class WeaponBehavior : MonoBehaviour
 {
 	[SerializeField]
-	private Collider2D[] edgeColliders;
-	[SerializeField]
 	private GameObject bulletPrefab;
 
 	private WeaponParameters weaponParameters;
+	private WeaponController weaponController;
+	private Collider2D heroCollider;
 
 	private bool _isShooting;
 	public bool IsShooting => _isShooting;
 
 	private Vector2 direction;
 
-	public void Init(WeaponParameters weaponParameters)
+	public void Init(WeaponParameters weaponParameters, WeaponController weaponController, Collider2D heroCollider)
 	{
 		this.weaponParameters = weaponParameters;
+		this.weaponController = weaponController;
+		this.heroCollider = heroCollider;
 	}
 
 	public void StartShooting()
@@ -47,11 +49,9 @@ public class WeaponBehavior : MonoBehaviour
 		go.transform.localPosition = Vector3.zero;
 
 		var colliderBullet = go.GetComponentInChildren<Collider2D>();
-		//Physics2D.IgnoreCollision(colliderBullet, heroCollider);
-		foreach(var edge in edgeColliders)
-			Physics2D.IgnoreCollision(colliderBullet, edge);
+		Physics2D.IgnoreCollision(colliderBullet, heroCollider);
 
-		go.GetComponent<Bullet>().StartMove(direction, weaponParameters.Speed);
+		go.GetComponent<Bullet>().Init(weaponController, direction, weaponParameters.Speed);
 
 		StartCoroutine("WaitDelay");
 	}

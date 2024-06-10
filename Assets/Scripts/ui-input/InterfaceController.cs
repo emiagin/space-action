@@ -20,8 +20,8 @@ public class InterfaceController : MonoBehaviour
 		}
 	}
 
-	[SerializeField]
-	private ParametersController _heroParameters;
+	/*[SerializeField]
+	private ParametersController _heroParameters;*/
 	[SerializeField]
 	private Dictionary<string, Window> _popups;
 

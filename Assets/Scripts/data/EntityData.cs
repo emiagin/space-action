@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityData<T> where T : IEntityDataInfo, new()
+public class EntityData
 {
-	protected T info = new T();
 	protected Dictionary<string, object> values;
 
 	public EntityData(object data, IDataParser dataParser)
 	{
-		values = dataParser.Parse(data, info);
+		values = dataParser.Parse(data);
 	}
 
 	public void SetParameterByName(string name, object value)
@@ -17,23 +16,14 @@ public class EntityData<T> where T : IEntityDataInfo, new()
 		if (!values.TryGetValue(name, out object oldValue))
 			return;
 
-		if (info.Info[name].IsInstanceOfType(value))
-		{
-			values[name] = value;
-		}
-		else
-		{
-			Debug.LogError($"Invalid type for {name}. Expected {info.Info[name]} but got {value.GetType()}.");
-		}
+		values[name] = value;
 	}
 
-	public KeyValuePair<object,Type> GetParameterByName(string name)
+	public object GetParameterByName(string name)
 	{
-		var result = new KeyValuePair<object,Type>();
-
 		if (values.TryGetValue(name, out object value))
-			return new KeyValuePair<object, Type>(value, info.Info[name]);
+			return value;
 
-		return result;
+		return null;
 	}
 }

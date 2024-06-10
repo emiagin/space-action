@@ -10,9 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6136246431291775673}
   - component: {fileID: 6136246431291775672}
-  - component: {fileID: 6572181765516753867}
-  - component: {fileID: 6136246431291775679}
-  - component: {fileID: 6136246431291775678}
   m_Layer: 0
   m_Name: body
   m_TagString: Bullet
@@ -87,55 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &6572181765516753867
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6136246431291775674}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!58 &6136246431291775679
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6136246431291775674}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.20905113
---- !u!114 &6136246431291775678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6136246431291775674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7cb4e8a4c7f21548a06c80e432b1f88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6136246432164552255
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6136246432164552254}
   - component: {fileID: 312695735131429749}
+  - component: {fileID: 4495670694468292337}
+  - component: {fileID: 2754720322423865680}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Bullet
@@ -181,4 +131,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e19f8317e7c2374d97ea7d8fc11f7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 6136246431291775679}
+--- !u!58 &4495670694468292337
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136246432164552255}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.20905113
+--- !u!50 &2754720322423865680
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6136246432164552255}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

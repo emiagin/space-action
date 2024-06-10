@@ -9,9 +9,7 @@ public class EnemyAI : MonoBehaviour
 	private Transform target;
 	private Pathfinding pathfinding;
 	private EnemiesAIController enemiesAIController;
-
-	[SerializeField]
-	private ParametersController parameters;
+	private EnemyParameters enemyParameters;
 
 	private List<Node> path = null;
 
@@ -23,7 +21,12 @@ public class EnemyAI : MonoBehaviour
 
 	private bool canMove;
 
-	public void Init(Pathfinding pathfinding, EnemiesAIController enemiesAIController, Transform target)
+	public void Init(EnemyParameters enemyParameters)
+	{
+		this.enemyParameters = enemyParameters;
+	}
+
+	public void StartTargeting(Pathfinding pathfinding, EnemiesAIController enemiesAIController, Transform target)
 	{
 		this.enemiesAIController = enemiesAIController;
 		this.pathfinding = pathfinding;
@@ -66,7 +69,7 @@ public class EnemyAI : MonoBehaviour
 	private void MoveTowardsTarget(Vector3 nextPosition)
 	{
 		//Vector3 direction = (nextPosition - transform.position).normalized;
-		transform.position = Vector3.MoveTowards(transform.position, nextPosition, Time.deltaTime * parameters.Speed);
+		transform.position = Vector3.MoveTowards(transform.position, nextPosition, Time.deltaTime * enemyParameters.Speed);
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)

@@ -2,5 +2,5 @@
 
 public interface IDataParser
 {
-	Dictionary<string, object> Parse(object data, IEntityDataInfo info);
+	Dictionary<string, object> Parse(object data);
 }

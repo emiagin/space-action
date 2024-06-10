@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 public class DataParserFromJson : IDataParser
 {
-	public Dictionary<string, object> Parse(object data, IEntityDataInfo info)
+	public Dictionary<string, object> Parse(object data)
 	{
 		var values = new Dictionary<string, object>();
 
@@ -12,17 +12,9 @@ public class DataParserFromJson : IDataParser
 		{
 			var jsonObject = JObject.Parse(jsonString);
 
-			foreach (var key in info.Info.Keys)
+			foreach (var property in jsonObject.Properties())
 			{
-				if (jsonObject.TryGetValue(key, StringComparison.OrdinalIgnoreCase, out JToken token))
-				{
-					var value = token.ToObject(info.Info[key]);
-					values[key] = value;
-				}
-				else
-				{
-					values[key] = GetDefaultValue(info.Info[key]);
-				}
+				values[property.Name] = property.Value.ToObject<object>();
 			}
 		}
 		else

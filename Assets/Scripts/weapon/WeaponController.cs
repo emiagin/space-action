@@ -13,16 +13,18 @@ public class WeaponController: MonoBehaviour
 	//private LayerMask weaponLayersInflicted;
 
 	private HeroInputs heroInputs;
+	private Collider2D heroCollider;
 	private WeaponParameters weaponData;
 
 	public Action<EnemyController> onEnemyDamaged;
 
-	public void Init(HeroInputs heroInputs, WeaponParameters weaponData)
+	public void Init(HeroInputs heroInputs, WeaponParameters weaponData, Collider2D heroCollider)
 	{
 		this.heroInputs = heroInputs;
 		this.weaponData = weaponData;
+		this.heroCollider = heroCollider;
 
-		weaponBehavior.Init(weaponData);
+		weaponBehavior.Init(weaponData, this, heroCollider);
 
 		heroInputs.OnStartShooting += ShootingStart;
 		heroInputs.OnShooting += Shooting;

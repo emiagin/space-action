@@ -39,7 +39,7 @@ public class SpotSpawn : MonoBehaviour
 		go.localPosition = Vector3.zero;
 		//go.GetComponent<AIDestinationSetter>().target = _target;
 
-		var name = go.GetComponent<ParametersController>().MainName;
+		/*var name = go.GetComponent<ParametersController>().MainName;*/
 		name = name + "_" + _countSpawned.ToString();
 
 		_countSpawned++;

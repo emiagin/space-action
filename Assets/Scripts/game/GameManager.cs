@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	[SerializeField]
-	private ParametersController _heroParameters;
+	/*[SerializeField]
+	private ParametersController _heroParameters;*/
 	[SerializeField]
 	private EnemyWavesController _enemyWavesController;
 	[SerializeField]
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
 	private void Awake()
 	{
-		_heroParameters.OnHealthNull += GameEnd_HeroDie;
+		/*_heroParameters.OnHealthNull += GameEnd_HeroDie;*/
 	}
 
 	private void Start()
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
 	~GameManager()
 	{
-		_heroParameters.OnHealthNull -= GameEnd_HeroDie;
+		/*_heroParameters.OnHealthNull -= GameEnd_HeroDie;*/
 	}
 
 	public void StartGame()
