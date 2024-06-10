@@ -13,7 +13,7 @@ public class EnemiesAIController : MonoBehaviour
 	private bool movePermissionAll;
 
 	public Action<EnemyAI, EnemyAI> OnEnemiesStartCollision, OnEnemiesEndCollision;
-	public Action<EnemyAI> OnPlayerCollision;
+	public Action<EnemyAI, int> OnPlayerCollision;
 
 	private void Start()
 	{
@@ -79,12 +79,14 @@ public class EnemiesAIController : MonoBehaviour
 		enemyHit.SetPermissionToMove(true);
 	}
 
-	private void PlayerCollision(EnemyAI enemy)
+	private void PlayerCollision(EnemyAI enemy, int damage)
 	{
 		//Debug.Log($"Switch off {enemy.name}");
 		int index = enemies.FindIndex(x => x.Item1.Equals(enemy));
 		enemies[index].Item1.SetPermissionToMove(false);
 		enemies[index].Item1.SetInteractions(false);
 		enemies.RemoveAt(index);
+
+		heroController.TakeDamage(damage);
 	}
 }

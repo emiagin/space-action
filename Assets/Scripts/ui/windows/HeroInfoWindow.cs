@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeroInfoWindow : Window
 {
 	[SerializeField]
-	private HpBar hpBar;
+	private HpView hpBar;
 
 	/*private ParametersController _heroParams;*/
 

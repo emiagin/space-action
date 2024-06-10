@@ -6,6 +6,8 @@ public class DataController: MonoBehaviour
 	private TextAsset weaponData;
 	[SerializeField]
 	private TextAsset enemyData;
+	[SerializeField]
+	private TextAsset heroData;
 
 	private IDataParser parser = new DataParserFromJson();
 
@@ -17,5 +19,9 @@ public class DataController: MonoBehaviour
 	public EnemyParameters LoadEnemyData()
 	{
 		return new EnemyParameters(enemyData.text, parser);
+	}
+	public HeroParameters LoadHeroData()
+	{
+		return new HeroParameters(heroData.text, parser);
 	}
 }

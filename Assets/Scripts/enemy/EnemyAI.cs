@@ -83,7 +83,7 @@ public class EnemyAI : MonoBehaviour
 		else if (collision.collider.tag == "Player")
 		{
 			//Debug.Log("Player hit enter");
-			enemiesAIController.OnPlayerCollision?.Invoke(this);
+			enemiesAIController.OnPlayerCollision?.Invoke(this, enemyParameters.Damage);
 		}
 	}
 
